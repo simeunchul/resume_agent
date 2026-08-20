@@ -1,0 +1,42 @@
+# ═══════════════════════════════════════════════════════════════════════
+# 스킬 칩 풀 (예시) — profile/skills.yaml 로 복사해 본인 내용으로 바꾼다
+#
+#  ▶ 그룹은 3개: [JD 핵심 영역] / [개발·서빙·인프라] / [학습 중 · 아직 다뤄보지 않은 것]
+#  ▶ 세 번째 점선칩 그룹은 반드시 넣는다 (정직 표기 원칙)
+#  ▶ 없는 기술을 칩으로 만들지 않는다 — 이 파일에 있는 것만 쓴다
+# ═══════════════════════════════════════════════════════════════════════
+
+# ── 보유 스킬 (칩으로 쓸 수 있는 것) ───────────────────────────────────
+have:
+  ai_llm:
+    label_default: AI · LLM
+    chips:
+      - {name: 프롬프트 설계, tags: [llm, prompt]}
+      - {name: RAG, tags: [rag, retrieval]}
+      - {name: Function Calling, tags: [agent, tool]}
+      - {name: 품질 게이트(fail-closed), tags: [quality, safety]}
+
+  dev_serving:
+    label_default: 개발 · 서빙 · 인프라
+    chips:
+      - {name: Python, tags: [core]}
+      - {name: FastAPI, tags: [backend, api]}
+      - {name: Docker, tags: [infra, mlops]}
+      - {name: Airflow, tags: [mlops, pipeline, data-engineer]}
+      - {name: SQL, tags: [data-engineer, sql]}
+      - {name: GitHub Actions(CI), tags: [ci, infra]}
+
+# ── 아직 다뤄보지 않은 것 (점선칩) ─────────────────────────────────────
+# JD 필수요건 중 미경험인 것을 여기서 골라 점선칩으로 노출한다.
+# alt 는 "대신 무엇을 했는지" — 정직 표기 note 에 그대로 쓰인다.
+not_yet:
+  - name: 모델 파인튜닝(LoRA 등)
+    tags: [ml, finetune]
+    alt: 프롬프트·RAG 로 접근
+    status: 학습 중
+  - name: Kubernetes 대규모 운영
+    tags: [infra, k8s]
+    alt: Docker Compose 로 로컬 검증까지
+  - name: 대용량 스트리밍 처리
+    tags: [data-engineer, streaming]
+    alt: 배치 파이프라인으로 수행

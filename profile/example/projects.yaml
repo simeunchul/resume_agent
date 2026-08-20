@@ -1,0 +1,125 @@
+# ═══════════════════════════════════════════════════════════════════════
+# 프로젝트·경력 원본 (예시) — profile/projects.yaml 로 복사해 본인 내용으로 바꾼다
+#
+#  ▶ compose 노드가 JD 에 맞는 bullet 을 여기서 "인덱스로 골라" 쓴다 (문장을 새로 쓰지 않는다)
+#  ▶ 각 bullet 의 facts 는 profile/facts.yaml 의 id — fact_guard 대조용
+#  ▶ 여기 header 의 name 이 이력서 파일명(`{이름}_이력서.pdf`)이 된다
+# ═══════════════════════════════════════════════════════════════════════
+
+header:                                    # 【고정】 이력서 헤더에 그대로 박힌다
+  name: 홍길동
+  phone: "010-0000-0000"
+  email: your-email@example.com
+  birth: "1996.01.01"
+  military: 군필
+  address: 서울시 ○○구
+  availability: 즉시 가능
+  optional_overseas: 해외여행 결격사유 없음   # 공고가 요구할 때만 추가
+
+# ── 메인 프로젝트 ──────────────────────────────────────────────────────
+# 블록 3개 정도를 두고, 공고에 따라 그중 3개를 골라 쓴다.
+main_project:
+  org: ○○회사 — 서비스 이름 또는 규모 한 줄
+  period: "2025.01 - 2025.12 (12개월)"
+  participation: 정규직            # 정규 고용이 아니면 사실대로 적는다 (인턴 / 계약 / 프로젝트 참여 등)
+  team: 4인 팀 (기획 1 · 개발 3)
+  env: 사내 클라우드 · GPU 1장
+  role_boundary:
+    solo: 로그 분석 파이프라인 전체     # "혼자/단독" 표현은 여기에만 붙일 수 있다
+    led: [백엔드 API, 데이터 적재]
+    team_shared: 추천 모델 아키텍처·학습
+
+  blocks:
+    - id: block_a
+      title: 첫 번째 블록 제목 (예 — LLM 응용 기능 개발)
+      period: "2025.06 - 2025.12"
+      scope: 단독
+      tags: [llm, agent, ai-engineer]
+      tech: [Python, FastAPI, Docker]
+      bullets:
+        - tags: [llm, prompt]
+          facts: []               # facts.yaml 의 id 를 쓰면 그 수치를 검증된 것으로 인정한다
+          text: >-
+            무엇을 왜 만들었고 결과가 어땠는지 한 문장. 강조는 <b>태그</b>만 쓴다
+        - tags: [agent, tool]
+          facts: [example_metric]
+          text: >-
+            수치를 쓰려면 반드시 facts.yaml 에 등록한다 — <b>응답 3.2초</b>처럼
+            등록되지 않은 숫자는 fact_guard 가 잡아 재작성시킨다
+
+    - id: block_b
+      title: 두 번째 블록 제목 (예 — 데이터 파이프라인 구축)
+      period: "2025.03 - 2025.09"
+      scope: 팀 공동
+      tags: [data-engineer, pipeline, mlops]
+      tech: [Python, Airflow, SQL]
+      bullets:
+        - tags: [pipeline, data-engineer]
+          facts: []
+          text: >-
+            수집·정제·적재를 자동화하고 실패 시 재처리되도록 배선
+        - tags: [mlops]
+          facts: []
+          text: >-
+            배치 결과를 점검하는 검증 단계를 붙여 잘못된 산출물이 다음 단계로 넘어가지 않게 함
+
+    - id: block_c
+      title: 세 번째 블록 제목 (예 — 서비스 API 개발)
+      period: "2025.01 - 2025.06"
+      scope: 단독
+      tags: [backend, api]
+      tech: [Python, FastAPI, PostgreSQL]
+      bullets:
+        - tags: [backend, api]
+          facts: []
+          text: >-
+            REST API 를 설계·구현하고 응답 규격을 문서화
+        - tags: [monitoring]
+          facts: []
+          text: >-
+            에러율·지연을 대시보드로 상시 확인할 수 있게 지표를 노출
+
+# ── 경력 (정규 고용) ───────────────────────────────────────────────────
+career:
+  org: ○○스튜디오
+  period: "2024.02 - 2024.12 (10개월)"
+  type: 정규직
+  team: 서버팀
+  exit: 퇴직 사유 · (필요할 때만 적는다)
+  tags: [backend, server]
+  bullets:
+    - text: >-
+        실시간 서버를 운영하고 내부 운영툴용 <b>REST API</b>를 직접 설계·개발
+    - text: >-
+        로그를 정제·분류해 적재하고 대시보드를 구축해 트래픽 추이를 상시 모니터링
+
+# ── 기타 프로젝트 (분량 초과 시 여기서 먼저 뺀다) ──────────────────────
+side_projects:
+  - id: side_a
+    title: 사이드 프로젝트 이름 — 한 줄 설명
+    meta: "2026.01 - 현재 · 개인 1인 · 기획부터 배포까지"
+    tags: [app, llm]
+    tech: "TypeScript, FastAPI"
+    text: >-
+      무엇을 만들었고 어떤 문제를 어떻게 풀었는지 두세 줄
+
+  - id: side_b
+    title: 두 번째 사이드 프로젝트
+    meta: "2025.10 - 현재 · 개인 1인"
+    tags: [data-engineer, ci]
+    tech: "Python, GitHub Actions"
+    text: >-
+      수집 파이프라인을 만들고 CI 로 자동 실행되게 구성
+
+# ── 학력 · 자격 · 연구 ─────────────────────────────────────────────────  【고정】
+education:
+  line: >-
+    ○○대학교 ○○학과 <span class="md">2023.02 졸업</span> ／ 자격증 A · 자격증 B
+research:
+  title: 연구 · 집필
+  meta: 개발 결과를 글로 풀어낸 기록
+  text: >-
+    블로그·기고·논문 등 남긴 기록을 한두 줄로. 없으면 이 섹션을 비워도 된다
+
+links:                                     # 【고정】
+  - GitHub · <a href="https://github.com/your-id">github.com/your-id</a>

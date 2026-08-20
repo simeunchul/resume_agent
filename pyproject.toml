@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "resume-agent"
+version = "0.1.0"
+description = "채용 공고를 찾아 읽고 검증된 사실만으로 이력서를 쓰는 LangGraph 에이전트"
+requires-python = ">=3.10"
+dependencies = [
+    "langgraph>=1.2",
+    "langchain>=1.3",
+    "langchain-google-genai>=4.3",
+    "google-genai>=1.0",
+    "playwright>=1.40",
+    "jinja2>=3.1",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+    "pypdf>=5.0",
+    "pydantic>=2.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# ── 에디터(Pylance/Pyright)용 ──────────────────────────────────────────
+# 패키지를 editable 로 설치하면 정적 분석기도 src 를 찾는다.
+#   .venv\Scripts\python.exe -m pip install -e .
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+extraPaths = ["src"]
+
+[tool.ruff]
+line-length = 110
